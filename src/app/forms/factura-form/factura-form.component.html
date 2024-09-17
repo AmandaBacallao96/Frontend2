@@ -1,0 +1,76 @@
+<div mat-dialog-title>
+    <h1>{{getTitle()}} Factura</h1>
+</div>
+<form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Código Factura</mat-label>
+                    <input matInput type="text" formControlName="codigo_factura"/>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>IVA</mat-label>
+                  <mat-select formControlName="iva">
+                    <mat-option value="1">Si</mat-option>
+                    <mat-option value="0">No</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>IRPF</mat-label>
+                <mat-select formControlName="irpf">
+                  <mat-option value="1">Si</mat-option>
+                  <mat-option value="0">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>RE</mat-label>
+              <mat-select formControlName="re">
+                <mat-option value="1">Si</mat-option>
+                <mat-option value="0">No</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Pagado</mat-label>
+              <mat-select formControlName="pagado">
+                <mat-option value="1">Si</mat-option>
+                <mat-option value="0">No</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Rectificativa</mat-label>
+            <mat-select formControlName="rectificativa">
+              <mat-option value=1>Si</mat-option>
+              <mat-option value=0>No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>DNI</mat-label>
+              <input matInput type="text" formControlName="dni"/>
+          </mat-form-field>
+        </div>
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button [mat-dialog-close]="false" type="button">Cancel</button>
+        <button [disabled]="!facturaForm.valid" mat-raised-button color="primary" type="submit">{{getTitle()}}</button>
+   </div> 
+</form>

@@ -1,0 +1,59 @@
+<div mat-dialog-title>
+    <h1>{{getTitle()}} Cliente</h1>
+</div>
+<form [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+
+          <div class="row">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Representante Legal</mat-label>
+                <input matInput type="text" formControlName="representante_legal"/>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>DNI del Representante Legal</mat-label>
+              <input matInput type="text" formControlName="dni_representante_legal"/>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Sector</mat-label>
+              <input matInput type="text" formControlName="sector"/>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Actividad</mat-label>
+              <input matInput type="text" formControlName="actividad"/>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>CNAE</mat-label>
+              <input matInput type="text" formControlName="cnae"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>No. Trabajadores</mat-label>
+                <input matInput type="text" formControlName="numero_trabajadores"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>CIF</mat-label>
+                <input matInput type="text" formControlName="cif"/>
+            </mat-form-field>
+          </div>
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button [mat-dialog-close]="false" type="button">Cancel</button>
+        <button [disabled]="!empresaForm.valid" mat-raised-button color="primary" type="submit">{{getTitle()}}</button>
+   </div> 
+</form>

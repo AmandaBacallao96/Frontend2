@@ -1,0 +1,23 @@
+<p>flujo works!</p>
+
+    @if(esAdmin == true){
+        <h2>Usuario Admin autenticado</h2>
+    }@else {
+        <h2>Usuario no Admin autenticado</h2>
+    }
+
+<button *ngIf="esAdmin == true">Login</button>
+
+
+
+<ul>
+    @for (ciudad of ciudades; track ciudad.id) {
+        <li>{{ciudad.nombre}}</li>
+    }
+</ul>
+
+<select>
+    @for (ciudad of ciudades; track ciudad.id) {
+        <option value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+    }
+</select>

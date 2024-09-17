@@ -1,0 +1,24 @@
+<div mat-dialog-title>
+    <h1>{{getTitle()}} Servicio</h1>
+</div>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+            <!-- <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Id Servicio</mat-label>
+                    <input matInput type="text" formControlName="id_servicio" [disabled]="getTitle() === 'Agregar'"/>
+                </mat-form-field>
+            </div> -->
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" formControlName="nombre"/>
+                </mat-form-field>
+            </div>
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button [mat-dialog-close]="false" type="button">Cancel</button>
+        <button [disabled]="!contactForm.valid" mat-raised-button color="primary" type="submit">{{getTitle()}}</button>
+   </div> 
+</form>

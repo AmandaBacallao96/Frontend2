@@ -1,0 +1,92 @@
+
+<mat-toolbar>
+    <h2>Facturas</h2>
+    <span class="spacer"></span>
+     <!-- Botón para crear un nuevo servicio -->
+    <button mat-flat-button (click)="crearFactura()" color="primary"><mat-icon>add</mat-icon> Crear Factura</button>
+  </mat-toolbar>
+  <section>
+   @if(revision){
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Codigo Factura </th>
+        <td mat-cell *matCellDef="let factura"> {{factura.codigo_factura}} </td>
+      </ng-container>
+    
+      <!-- DNI Column -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <td mat-cell *matCellDef="let factura"> {{factura.dni}} </td>
+      </ng-container>
+
+      <!-- iva Column -->
+      <ng-container matColumnDef="iva">
+        <th mat-header-cell *matHeaderCellDef> IVA </th>
+        <td mat-cell *matCellDef="let factura"> @if(factura.iva == 0){NO} @else{SI}</td>
+      </ng-container>
+
+      <!-- irpf Column -->
+      <ng-container matColumnDef="irpf">
+        <th mat-header-cell *matHeaderCellDef> IRPF </th>
+        <td mat-cell *matCellDef="let factura"> @if(factura.irpf == 0){NO} @else{SI}</td>
+      </ng-container>
+
+      <!-- pagado Column -->
+      <ng-container matColumnDef="pagado">
+        <th mat-header-cell *matHeaderCellDef> PAGADO </th>
+        <td mat-cell *matCellDef="let factura"> @if(factura.pagado == 0){NO} @else{SI} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="re">
+        <th mat-header-cell *matHeaderCellDef> RE </th>
+        <td mat-cell *matCellDef="let factura"> @if(factura.re == 0){NO} @else{SI} </td>
+      </ng-container>
+      <ng-container matColumnDef="rectificativa">
+        <th mat-header-cell *matHeaderCellDef> Rectificativa </th>
+        <td mat-cell *matCellDef="let factura"> @if(factura.rectificativa == 0){NO} @else{SI} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let factura">
+          <!-- Botón para ver detalles -->
+    
+          <!-- Botón para actualizar -->
+          <button mat-icon-button (click)="actualizarFactura(factura)"  color="primary">
+            <mat-icon>edit</mat-icon></button>
+    
+          <!-- Botón para borrar -->
+          <button mat-icon-button (click)="deleteFactura(factura.codigo_factura)"  color="warn">
+            <mat-icon>delete</mat-icon></button> 
+
+             <!-- Botón para descargar -->
+          <button mat-icon-button  (click)="imprimir(factura.codigo_factura)" ngxPrint #printSection color="primary">
+            <mat-icon>print</mat-icon></button>
+
+             <!-- Botón para enviar -->
+          <button mat-icon-button (click)="enviarFactura(factura.codigo_factura)"  color="primary">
+            <mat-icon>mail</mat-icon></button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+   }@else{
+    <mat-spinner></mat-spinner>
+   }
+  <!-- Tabla de Servicios -->
+  
+  
+  </section>
+
+  
+  
+  
+  
