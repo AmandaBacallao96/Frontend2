@@ -16,6 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { ContratoMultiple } from '../../models/contratomultiple.model';
 
 const MATIRIAL_MODULES = [MatLabel,MatFormField, MatInput, MatDialogModule, MatButtonModule,MatSelectModule,MatFormFieldModule, MatInputModule, MatDatepickerModule];
 
@@ -36,7 +37,7 @@ export class ContratoMultipleFormComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
   private readonly _service = inject(GestionService);
   private readonly _modalSevcice = inject(ModalService);
-  private crearContratoHorario = false;
+  private crearContratoMultiple = false;
 
   date:Date=new Date();
 
@@ -72,7 +73,20 @@ async onSubmit() {
   if (this._matDialog.isEditing) {
     await this._service.update('contrato', this._matDialog.data.id_contrato,contrato).subscribe(
       (response) => {
-        console.log(response);
+        if(response.statusCode === 200){
+          console.log("Entra a contrato_multiple" );
+          let contrato_multiple= new ContratoMultiple(this._matDialog.data.id_contrato_multiple,this._matDialog.data.fecha,this._matDialog.data.id_contrato.toString());
+          this._service.update('contrato_multiple',this._matDialog.data.id_contrato_multiple,contrato_multiple).subscribe(
+            (response) => {
+              if(response.status == 200){
+                console.log(response);
+                this.openSnackBar(response.message.toString(), "Aceptar");
+              }
+            } 
+          );
+        }else{
+          console.log("No Entra a contrato_multiple" );
+        }
         this.openSnackBar(response.message.toString(), "Aceptar");
       },
       (error) => {
@@ -87,7 +101,7 @@ async onSubmit() {
       (response) => {
         if(response.statusCode === 200){
           console.log("Entra a contrato_multiple" );
-          this.crearContratoHorario = true;
+          this.crearContratoMultiple = true;
         }else{
           console.log("No Entra a contrato_multiple" );
         }
@@ -100,9 +114,9 @@ async onSubmit() {
       }
     );
 
-    if(this.crearContratoHorario){
-      let contrato_control_horario = new ContratoControlHorario(uuid4(),this._matDialog.data.id_contrato.toString());
-      await this._service.create('contrato_multiple',contrato_control_horario).subscribe(
+    if(this.crearContratoMultiple){
+      let contrato_multiple= new ContratoMultiple(uuid4(),this._matDialog.data.fecha,this._matDialog.data.id_contrato.toString());
+      await this._service.create('contrato_multiple',contrato_multiple).subscribe(
         (response) => {
           if(response.status == 200){
             console.log(response);
@@ -114,7 +128,7 @@ async onSubmit() {
   }
 
   this._modalSevcice.closeModal();
-  this.crearContratoHorario = false;
+  this.crearContratoMultiple = false;
 }
 
 

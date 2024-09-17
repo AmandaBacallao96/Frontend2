@@ -78,7 +78,8 @@ export class MultipleComponent implements OnInit {
                 contrato.precio,
                 contrato.estado,
                 contrato.dni,
-                multiple.fecha_cobro
+                multiple.fecha_cobro,
+                multiple.id_contrato_multiple
               );
               this.contratos_full.push(contrat);
             }
