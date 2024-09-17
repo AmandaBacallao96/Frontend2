@@ -1,11 +1,11 @@
 import { Servicio } from "./servicio.model";
 
 export class Contrata {
-    fecha: string;
+    fecha: Date;
     id_servicio: string;
     cif: string;
   
-    constructor(fecha: string, id_servicio: string, cif: string) {
+    constructor(fecha: Date, id_servicio: string, cif: string) {
       this.fecha = fecha;
       this.id_servicio = id_servicio;
       this.cif = cif;
