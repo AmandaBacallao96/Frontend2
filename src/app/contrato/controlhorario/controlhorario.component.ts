@@ -49,7 +49,7 @@ export class ControlhorarioComponent implements OnInit {
   }
 
   async fetchContratos() {
-    await this.service.getAll("contrato_multiple").subscribe(
+    await this.service.getAll("contrato_horario").subscribe(
       (response)=>{
         this.contratosHorarios = response.data.items;
       }
@@ -70,7 +70,7 @@ export class ControlhorarioComponent implements OnInit {
     const confirmation = confirm('¿Estás seguro de que deseas eliminar este contrato?');
 
     if (confirmation) {
-      this.service.delete("contrato_multiple",id).subscribe(
+      this.service.delete("contrato_horario",id).subscribe(
         (response) => {
           this.fetchContratos();
       },(error)=>{

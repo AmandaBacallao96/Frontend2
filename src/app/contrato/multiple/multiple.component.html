@@ -1,1 +1,61 @@
-<p>multiple works!</p>
+<mat-toolbar>
+    <h2>Contratos Multiples</h2>
+    <span class="spacer"></span>
+    <button mat-flat-button (click)="crearContrato()" color="primary"><mat-icon>add</mat-icon> Agregar Contrato</button>
+  </mat-toolbar>
+  <section>
+   @if(revision){
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <td mat-cell *matCellDef="let item"> {{item.dni}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let item"> {{item.precio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let item"> @if(item.estado == 0){Denegado} @else{Aceptado} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha Cobro </th>
+        <td mat-cell *matCellDef="let item"> {{item.fecha_cobro}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let item">
+          <!-- Botón para ver detalles -->
+          <!-- <button mat-flat-button (click)="verServicio(servicio.id_servicio)" color="primary">Ver</button> -->
+    
+          <!-- Botón para actualizar servicio -->
+          <button mat-icon-button (click)="actualizarContrato(item)"  color="primary">
+            <mat-icon>edit</mat-icon></button>
+    
+          <!-- Botón para eliminar servicio -->
+          <button mat-icon-button (click)="deleteContrato(item.id_contrato)"  color="warn">
+            <mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+   }@else{
+    <mat-spinner></mat-spinner>
+   }
+  
+  
+  </section>
+  
+  
+  
+  
