@@ -15,13 +15,13 @@ export class ContratoMultiple {
     precio: number;
     estado: string;
     dni: string;
-    fecha_cobro: Date;  // Campo de ContratoMultiple
+    fecha: Date;  // Campo de ContratoMultiple
 
-    constructor(id_contrato: string, precio: number, estado: string, dni: string, fecha_cobro: Date) {
+    constructor(id_contrato: string, precio: number, estado: string, dni: string, fecha: Date) {
       this.id_contrato = id_contrato;
       this.precio = precio;
       this.estado = estado;
       this.dni = dni;
-      this.fecha_cobro = fecha_cobro;
+      this.fecha = fecha;
     }
   }

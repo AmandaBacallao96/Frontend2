@@ -1,0 +1,49 @@
+<div mat-dialog-title>
+    <h1>{{getTitle()}} Contrato Multiple</h1>
+</div>
+<form [formGroup]="contratoForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Precio</mat-label>
+                    <input matInput type="text" formControlName="precio"/>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Estado</mat-label>
+                  <mat-select formControlName="estado">
+                    <mat-option value=1>Aceptado</mat-option>
+                    <mat-option value=0>Denegado</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>DNI</mat-label>
+                    <input matInput type="text" formControlName="dni"/>
+                </mat-form-field>
+            </div>
+
+            <!-- <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput type="text" formControlName="fecha"/>
+                </mat-form-field>
+            </div> -->
+            <mat-form-field>
+                <mat-label>Elegir Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" [value]="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+              
+          
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button [mat-dialog-close]="false" type="button">Cancel</button>
+        <button [disabled]="!contratoForm.valid" mat-raised-button color="primary" type="submit">{{getTitle()}}</button>
+   </div> 
+</form>

@@ -13,6 +13,7 @@ import { ModalService } from '../../forms/modal/modal.service';
 import { ContratoMultiple, ContratoMultipleFull } from '../../models/contratomultiple.model';
 import { Contrato } from '../../models/contrato.model';
 import { ContratoFormComponent } from '../../forms/contrato-form/contrato-form.component';
+import { ContratoMultipleFormComponent } from '../../forms/contrato-multiple-form/contrato-multiple-form.component';
 
 const MATIRIAL_MODULES = [MatIconModule, MatDividerModule, MatButtonModule,MatTableModule, MatToolbarModule,MatProgressSpinnerModule];
 
@@ -114,12 +115,12 @@ export class MultipleComponent implements OnInit {
 private readonly _modalService = inject(ModalService);
 
 crearContrato(): void {
-  this._modalService.openModal<ContratoFormComponent,ContratoMultiple>(ContratoFormComponent);
+  this._modalService.openModal<ContratoMultipleFormComponent,ContratoMultiple>(ContratoMultipleFormComponent);
 }
 
 // Método para abrir el modal y actualizar un servicio existente
   actualizarContrato(data: any): void {
-    this._modalService.openModal<ContratoFormComponent,ContratoMultiple>(ContratoFormComponent, data, true);
+    this._modalService.openModal<ContratoMultipleFormComponent,ContratoMultiple>(ContratoMultipleFormComponent, data, true);
   }
 
 
